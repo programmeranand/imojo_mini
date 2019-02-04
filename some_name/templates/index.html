@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Imojo Mini</title>
+    <style>
+        body {
+            margin:50px 0px; padding:0px;
+            text-align:center;
+            align:center;
+        }
+    </style>
+</head>
+<body>
+    <form action="some_name/pay/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <br/><br/>
+    <input type="submit" value="Pay">
+</form>
+</body>
+</html>
