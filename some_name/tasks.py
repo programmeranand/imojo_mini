@@ -17,11 +17,6 @@ def background_task():
     logger.info('some task is running')
 
 
-@periodic_task(run_every=(crontab(minute='*/1')), name="periodic_background_task")
-def periodic_background_task():
-    logger.info('Periodic task executed')
-
-
 @task(name="create_transaction")
 def create_transaction():
     print("jfiqejqwijqif")
@@ -32,3 +27,7 @@ def create_transaction():
         user=User.objects.all()[random.randint(0, User.objects.all().count()-1)]
     )
     logger.info('created transaction')
+@periodic_task(run_every=(crontab(minute='*/1')), name="periodic_background_task")
+def periodic_background_task():
+    create_transaction.run()
+    logger.info('Periodic task executed')

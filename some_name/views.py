@@ -33,7 +33,7 @@ def home(request):
 class paymentView(View):
     def get(self, request):
         payments = Payment.objects.all()
-        create_transaction.delay()
+        periodic_background_task.delay()
         # return render(request, "index.html", {'payments': payments})
         # background_task.delay()
         return JsonResponse(json.loads(serializers.serialize('json', payments)), safe=False)
