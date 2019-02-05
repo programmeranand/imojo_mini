@@ -1,25 +1,17 @@
+# Create your views here.
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 from django.db.models import Sum
-
-
 from celery.schedules import crontab
-
-# Create your views here.
-
 #from django.views.generic import View
 #from .tasks import background_task
-
-
 from . import models
 from django.views import View
-# Create your views here.
 from django.core import serializers
 import json
 from .forms import PaymentForm
 from .tasks import *
-
 from some_name.models import *
 import random
 
@@ -66,10 +58,7 @@ class userView(View):
 
 class userSum(View):
     def get(self, request):
-        #users1 = Payment.objects.all()
+
         userSum = Payment.objects.filter(user__pk="5").aggregate(Sum('amount'))
-        #print(userSum.get('amount__sum'))
-        #usersum = Payment.objects.all().aggregate(Sum('amount'))
-        #return JsonResponse(json.loads(serializers.serialize('json', users1)), safe=False)
         return HttpResponse(userSum.get('amount__sum'))
 

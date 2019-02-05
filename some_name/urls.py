@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'pay', views.paymentView.as_view(), name='pay'),
 
     url(r'^user', views.userView.as_view(), name = 'user'),
-    url(r'^usum', views.userSum.as_view(), name='usersum')
+    url(r'^usum', views.userSum.as_view(), name='usersum'),
+    url(r'usucess',view.userSucess.as_view(),name='usersuccess')
 ]
