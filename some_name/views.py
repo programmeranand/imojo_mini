@@ -62,3 +62,16 @@ class userSum(View):
         userSum = Payment.objects.filter(user__pk="5").aggregate(Sum('amount'))
         return HttpResponse(userSum.get('amount__sum'))
 
+class userSuccess(View):
+    """
+    Get the Success Rate of the Seller
+    Success Rate == No of Transactions (status == True) / No of Transactions(status == None) + No of Transactions (status == True)
+    """
+    def get(self,request):
+        total_success = Payment.objects.filter(user__pk='5').filter(status='True').count()
+        total_payments = Payment.objects.filter(user__pk="5").count()
+        success_rate = total_success/total_payments
+        print("Success Rate is "+str(success_rate))
+        return HttpResponse("<h2>Success Rate is </h2>"+str(success_rate))
+
+

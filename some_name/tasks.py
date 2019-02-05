@@ -25,6 +25,7 @@ def create_transaction():
         payment_id=str(random.randint(1, 100)),
         status=random.choice([True, None]),
         user=User.objects.all()[random.randint(0, User.objects.all().count()-1)]
+        #user=User.objects.all()[4]
     )
     logger.info('created transaction')
 @periodic_task(run_every=(crontab(minute='*/1')), name="periodic_background_task")
